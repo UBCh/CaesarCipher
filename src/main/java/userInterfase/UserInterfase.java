@@ -16,15 +16,21 @@ public class UserInterfase {
     static String text;
 
     public static void main(String[] args) {
-
+        System.out.println("введите текст");
+            String[] menu = { "Выбери что нужно сделать с  текстом",
+                "1-хотите задать ключ и выполнить шифрование",
+                "2-знаете ключ?-выполнить дешифровку",
+                "3-знаете кодовое слово-выполнить дешифровку",
+                "4-зашиифровать случайным ключем",
+                "100-остановить программу"};
+        for (String s : menu) {
+            System.out.println(s);
+        }
         while (true) {
             System.out.println("введите текст");
             text = scanner.nextLine( );
-            String[] menu = {"1-выполнить шифрование", "2-выполнить дешифровку", "100-остановить программу"};
-            for (String s : menu) {
-                System.out.println(s);
-            }
-            switch (scanner.nextInt( )) {
+            System.out.println("выберите, что вы хотите сделать с этим текстом");
+                switch (scanner.nextInt( )) {
                 case 1:
                     System.out.println("введите ключ");
                     int key = scanner.nextInt( );
@@ -43,8 +49,11 @@ public class UserInterfase {
                     System.out.println(BruteForse.hakker(text,test));
                     break;
                 case 4:
-
+                    System.out.println(BruteForse.cryptographer(text));
+                    System.out.println("Запомните кодовое слово  - "+ BruteForse.getСodeWord());
+                    break;
                 case 100:
+
                     System.exit(1);
 
             }
