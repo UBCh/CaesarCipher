@@ -1,6 +1,7 @@
 package userInterfase;
 
 import endgin.Analisator;
+import endgin.BruteForse;
 import endgin.Encoder;
 import endgin.Key;
 
@@ -37,7 +38,9 @@ public class UserInterfase {
                     System.out.println(Analisator.analisatorCript(text));
                     break;
                 case 3:
-
+                    System.out.println("введите проверочное слово");
+                    String test = scanner.next( );
+                    System.out.println(BruteForse.hakker(text,test));
                     break;
                 case 4:
 
