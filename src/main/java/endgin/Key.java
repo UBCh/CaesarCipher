@@ -1,11 +1,11 @@
 package endgin;
 
 public class Key {
-    public Key(int key) {
-        this.key = key;
-    }
-
     private static int key;
+
+    public Key(int key) {
+        Key.key = key;
+    }
 
     public static int getKey() {
         return key;
