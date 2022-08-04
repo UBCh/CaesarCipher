@@ -1,16 +1,22 @@
 package endgin;
 
+import exception.SymbolNotFoundException;
+
 import java.util.Arrays;
 
 public class BruteForse {
 
+
     private static String codeWord;
 
-    public static String hakker(String string, String test) {
+    public BruteForse() {
+    }
+
+    public static String hakker(String string, String test) throws SymbolNotFoundException {
         // создадим  для хранения расшифрованного
         String result = "";
-        // сначала порежем на части по пробелом, т.е. разобьем на слова
-        String[] segmentText = string.split(" ");
+        //         сначала порежем на части по пробелом, т.е. разобьем на слова
+        String[] segmentText = string.split(String.valueOf(' '));
         // проверим какой отрезок совпадает по длинне с тестовым словом
         for (int i = 0; i < segmentText.length; i++) {
             if (segmentText[i].length( ) != test.length( )) {
@@ -18,7 +24,7 @@ public class BruteForse {
             } else {
                 char[] segmentTextChar = segmentText[i].toCharArray( );           // нашли какой отрезок совпадает по длинне с тестовым словом, перегоняем его в массив char
                 char[] testChar = test.toCharArray( );                            //  перегоняем тестовую строку в массив char
-                char[] tmp = new char[segmentText.length];                         //временный пустой массив
+                char[] tmp2 = new char[segmentText.length];                         //временный пустой массив
                 for (int t = 0; t < segmentTextChar.length; t++) {
                     if (Encoder.findSymbol(testChar[t]) > 0) {                     // проверяем есть ли символы в алфавите
                         int indexTestChar = Encoder.getIndex(testChar[t]);         // находим индекс символа в алфавите
@@ -26,11 +32,11 @@ public class BruteForse {
                         if (indexTestChar != indexSegment) {
                             int delta = indexSegment - indexTestChar;
                             Key.setKey(delta);
-                            tmp[t] = Encoder.deCodingCesar(segmentTextChar[t]);
+                            tmp2[t] = Encoder.deCodingCesar(segmentTextChar[t]);
                         }
                     }
                 }
-                if (Arrays.equals(tmp, testChar)) {
+                if (Arrays.equals(tmp2, testChar)) {
                     break;
                 }                       // проверяем, что полученный расшифрованный участок совпадает с тестовым словом
             }
@@ -43,16 +49,16 @@ public class BruteForse {
 
     }
 
-    public static String cryptographer(String string) {
+    public static String cryptographer(String string) throws SymbolNotFoundException {
+        String text = string;
         // создадим  для хранения зашифрованного
         String result = "";
         // сначала порежем на части по пробелом, т.е. разобьем на слова
-        String[] segmentText = string.split(" ");
+        String[] segmentText = string.split(String.valueOf(' '));
         // найдем кодове слово -по длине самое длинное
         int index = 0;    // ишем индект самого длинного отрезка
         int w = 0;
         for (int q = 0; q < segmentText.length; q++) {
-            w = segmentText[0].length( );
             if (segmentText[q].length( ) > w) {
                 w = segmentText[q].length( );
                 index = q;
@@ -67,11 +73,11 @@ public class BruteForse {
     }
 
 
-    public static void setCodeWord(String codeWord) {
-        BruteForse.codeWord = codeWord;
+    public static void setCodeWord(String code) {
+        codeWord = code;
     }
 
-    public static String getСodeWord() {
+    public static String getCodeWord() {
         return codeWord;
     }
 

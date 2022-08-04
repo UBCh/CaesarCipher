@@ -1,11 +1,10 @@
 package graphicalInterface;
 
-import endgin.BruteForse;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
 public class Window {
     static JFrame jFrame = getJFrame( );
@@ -18,7 +17,11 @@ public class Window {
         jButton1.addActionListener(new ActionListener( ) {
             @Override
             public void actionPerformed(ActionEvent e) {
-                PanelOne.getPanelOne( );
+                try {
+                    PanelOne.getPanelOne( );
+                } catch (IOException ex) {
+                    ex.printStackTrace( );
+                }
             }
         });
 
@@ -71,7 +74,7 @@ public class Window {
         jFrame.setTitle("ДЛЯ ВЫБОРА ОПЕРАЦИИ НАЖМИТЕ НУЖНУЮ КНОПКУ");
         Toolkit toolkit = Toolkit.getDefaultToolkit( );  // инструменты для окна
         Dimension dimension = toolkit.getScreenSize( ); // получаем размер экрана
-        jFrame.setBounds(dimension.width / 2 - 500, dimension.height / 2 - 400, 1000, 800);
+        jFrame.setBounds(dimension.width / 2 - 500, dimension.height / 2 - 400, 500, 200);
         return jFrame;
     }
 

@@ -1,12 +1,16 @@
 package graphicalInterface;
 
+import dao.StrimDao;
 import endgin.Analisator;
 import endgin.Key;
+import exception.SymbolNotFoundException;
+import exception.TextNotFoundException;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
 public class PanelTwo {
     static JFrame jFrame = getJFrame( );
@@ -14,12 +18,13 @@ public class PanelTwo {
 
     public static void getPanelTwo() {
         jFrame.add(jPanel);
-        jPanel.add(new JLabel("введите зашифрованный текст"));
-        JTextField jTextField1 = new JTextField("введите текст", 20);
-        jPanel.add(jTextField1);
-        jPanel.revalidate( );
+//        String itog = "";
+//        jPanel.add(new JLabel("введите зашифрованный текст"));
+//        JTextField jTextField1 = new JTextField("введите текст", 20);
+//        jPanel.add(jTextField1);
+//        jPanel.revalidate( );
         jPanel.add(new JLabel("введите ключ"));
-        JTextField jTextField2 = new JTextField("введите ключ", 10);
+        JTextField jTextField2 = new JTextField(10);
         jPanel.add(jTextField2);
         JButton jButton = new JButton(" включить дешифратор");
         jPanel.add(jButton);
@@ -36,7 +41,20 @@ public class PanelTwo {
                 Toolkit toolkit = Toolkit.getDefaultToolkit( );  // инструменты для окна
                 Dimension dimension = toolkit.getScreenSize( ); // получаем размер экрана
                 jFrame.setBounds(dimension.width / 2 - 500, dimension.height / 2 - 400, 1000, 800);
-                jFrame.add(new MyComponents(Analisator.analisatorCript(jTextField1.getText( ))));
+                String itog = null;
+                try {
+                    itog = Analisator.analisatorCript(StrimDao.inputFiles( ));
+                } catch (IOException | TextNotFoundException ex) {
+                    ex.printStackTrace( );
+                } catch (SymbolNotFoundException ex) {
+                    ex.printStackTrace( );
+                }
+                jFrame.add(new MyComponents(itog));
+                try {
+                    StrimDao.outputFiles(itog);
+                } catch (IOException ex) {
+                    ex.printStackTrace( );
+                }
 
             }
         });
@@ -51,10 +69,10 @@ public class PanelTwo {
         };
         jFrame.setVisible(true);
         jFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        jFrame.setTitle("ЗАДАЙТЕ КЛЮЧ И ВВЕДИТЕ ТЕКСТ");
+        jFrame.setTitle("ПОМЕСТИТЕ ТЕКСТ В text.txt и ВВЕДИТЕ КЛЮЧ");
         Toolkit toolkit = Toolkit.getDefaultToolkit( );  // инструменты для окна
         Dimension dimension = toolkit.getScreenSize( ); // получаем размер экрана
-        jFrame.setBounds(dimension.width / 2 - 500, dimension.height / 2 - 400, 1000, 800);
+        jFrame.setBounds(dimension.width / 2 - 200, dimension.height / 2 - 400, 500, 200);
         return jFrame;
     }
 
