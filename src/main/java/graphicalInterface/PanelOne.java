@@ -18,10 +18,6 @@ public class PanelOne {
 
     public static void getPanelOne() throws IOException {
         jFrame.add(jPanel);
-//        jPanel.add(new JLabel("введите текст"));
-        //        JTextField jTextField1 = new JTextField(string, 20);
-//        jPanel.add(jTextField1);
-//        jPanel.revalidate( );
         jPanel.add(new JLabel("введите ключ"));
         JTextField jTextField2 = new JTextField(10);
         // получаем текс из файла
@@ -31,7 +27,7 @@ public class PanelOne {
         jButton.addActionListener(new ActionListener( ) {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Key.setKey(Integer.parseInt(jTextField2.getText( )));
+                Key.setKey(Integer.parseInt(jTextField2.getText( )));    // сетаем Key
 
                 JFrame jFrame = new JFrame( ) {
                 };
@@ -55,7 +51,7 @@ public class PanelOne {
                 }
                 jFrame.add(new MyComponents(itog));
                 try {
-                    StrimDao.outputFiles(itog);
+                                 StrimDao.outputFiles(itog);
                 } catch (IOException ex) {
                     ex.printStackTrace( );
                 }

@@ -17,10 +17,6 @@ public class PanelFour {
 
     public static void getPanelFour () {
         jFrame.add(jPanel);
-//        jPanel.add(new JLabel( "введите зашифрованный текст" ));
-//        JTextField jTextField1=new JTextField("введите текст",20);
-//        jPanel.add(jTextField1);
-//        jPanel.revalidate();
         jPanel.add(new JLabel("введите кодовое слово"));
         JTextField jTextField2 = new JTextField(10);
         jPanel.add(jTextField2);

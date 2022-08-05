@@ -3,7 +3,7 @@ package endgin;
 import exception.SymbolNotFoundException;
 
 public class Analisator {
-
+    // кодируем
     public static String analisatorText(String string) throws SymbolNotFoundException {
 
         char[] text = string.toCharArray( );
@@ -19,6 +19,8 @@ public class Analisator {
         return String.valueOf(tmp);
     }
 
+
+    // декодируем
     public static String analisatorCript(String string) throws SymbolNotFoundException {
         char[] text = string.toCharArray( );
         char[] tmp = new char[text.length];

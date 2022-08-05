@@ -23,8 +23,10 @@ public class BruteForse {
                 continue;
             } else {
                 char[] segmentTextChar = segmentText[i].toCharArray( );           // нашли какой отрезок совпадает по длинне с тестовым словом, перегоняем его в массив char
-                char[] testChar = test.toCharArray( );                            //  перегоняем тестовую строку в массив char
-                char[] tmp2 = new char[segmentText.length];                         //временный пустой массив
+               char[] testChar = test.toCharArray( );
+
+              //  перегоняем тестовую строку в массив char
+                char[] tmp2 = new char[segmentTextChar.length];                         //временный пустой массив
                 for (int t = 0; t < segmentTextChar.length; t++) {
                     if (Encoder.findSymbol(testChar[t]) > 0) {                     // проверяем есть ли символы в алфавите
                         int indexTestChar = Encoder.getIndex(testChar[t]);         // находим индекс символа в алфавите

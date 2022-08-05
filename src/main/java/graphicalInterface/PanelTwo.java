@@ -18,11 +18,6 @@ public class PanelTwo {
 
     public static void getPanelTwo() {
         jFrame.add(jPanel);
-//        String itog = "";
-//        jPanel.add(new JLabel("введите зашифрованный текст"));
-//        JTextField jTextField1 = new JTextField("введите текст", 20);
-//        jPanel.add(jTextField1);
-//        jPanel.revalidate( );
         jPanel.add(new JLabel("введите ключ"));
         JTextField jTextField2 = new JTextField(10);
         jPanel.add(jTextField2);
@@ -49,9 +44,10 @@ public class PanelTwo {
                 } catch (SymbolNotFoundException ex) {
                     ex.printStackTrace( );
                 }
-                jFrame.add(new MyComponents(itog));
+                jFrame.add(new MyComponents(itog));    // добавляем итоговую строку в мои компоненты, что бы их разместить на новой панельке
                 try {
-                    StrimDao.outputFiles(itog);
+
+                    StrimDao.outputFiles(itog);   // записываем в файл
                 } catch (IOException ex) {
                     ex.printStackTrace( );
                 }
@@ -64,7 +60,7 @@ public class PanelTwo {
 
 
     static JFrame getJFrame() {
-
+        //создаем панель
         JFrame jFrame = new JFrame( ) {
         };
         jFrame.setVisible(true);

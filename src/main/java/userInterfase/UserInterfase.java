@@ -9,9 +9,9 @@ import java.io.IOException;
 public class UserInterfase {
 
 
-    public static void main(String[] args) throws IOException, TextNotFoundException, SymbolNotFoundException {
+    public static void main(String[] args) throws TextNotFoundException, IOException, SymbolNotFoundException {
+    Window.getApplication( );
 
-Window.getApplication( );
 
     }
 

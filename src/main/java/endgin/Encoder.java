@@ -7,7 +7,7 @@ import java.util.Map;
 
 
 public class Encoder {
-
+// алфавит вынесен в переменную- для возможности параметризации проекта
 
     private static final char[] a = {'А', 'Б', 'В', 'Г', 'Д', 'Е', 'Ё', 'Ж', 'З', 'И', 'Й', 'К', 'Л', 'М', 'Н', 'О', 'П', 'Р', 'С', 'Т', 'У', 'Ф', 'Х', 'Ц', 'Ч', 'Ш', 'Щ', 'Ь', 'Ы', 'Ъ', 'Э', 'Ю', 'Я', '.', ',', '"', ':', '-', '!', '?', ' '};
     private static final char[] aM = {'а', 'б', 'в', 'г', 'д', 'е', 'ё', 'ж', 'з', 'и', 'й', 'к', 'л', 'м', 'н', 'о', 'п', 'р', 'с', 'т', 'у', 'ф', 'х', 'ц', 'ч', 'ш', 'щ', 'ь', 'ы', 'ъ', 'э', 'ю', 'я', '.', ',', '"', ':', '-', '!', '?', ' '};
@@ -34,7 +34,7 @@ public class Encoder {
         return map;
     }
 
-
+    // определяем какой из алфавитов используется
     public static int findSymbol(char cha) throws SymbolNotFoundException {
         boolean index = alfabet.containsValue(cha);
 
@@ -49,6 +49,9 @@ public class Encoder {
         return 0;
     }
 
+
+    // получаем  инднекс символа в мапе
+
     public static int getIndex(char ch) throws SymbolNotFoundException {
         switch (findSymbol(ch)) {
             case 1:
@@ -61,6 +64,7 @@ public class Encoder {
             case 2:
                 for (int i = 0; i < alfabetMini.size( ); i++) {
                     if (alfabetMini.get(i).equals(ch)) {
+
                         return i;
                     }
                 }
@@ -73,17 +77,19 @@ public class Encoder {
         switch (findSymbol(simbol)) {
             case 1:
                 int indexMap = getIndex(simbol) + Key.getKey( );
-                if (indexMap > alfabet.size( )) {
+                if (indexMap >= alfabet.size( )-1) {
                     indexMap = indexMap - alfabet.size( );
                 }
                 return alfabet.get(indexMap);
 
             case 2:
-                int indexMapMini = getIndex(simbol) + Key.getKey( );
-                if (indexMapMini > alfabetMini.size( )) {
+                int indexMapMini = getIndex(simbol)+ Key.getKey( );
+                   if (indexMapMini >= alfabetMini.size( )-1) {
                     indexMapMini = indexMapMini - alfabetMini.size( );
+                    indexMapMini=indexMapMini;
                 }
-                return alfabetMini.get(indexMapMini);
+               var q=alfabetMini.get(indexMapMini);
+                return q;
 
         }
         return simbol;

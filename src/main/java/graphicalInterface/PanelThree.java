@@ -17,10 +17,6 @@ public class PanelThree {
 
     public static void getPanelThree () {
         jFrame.add(jPanel);
-//        jPanel.add(new JLabel( "введите  текст" ));
-//        JTextField jTextField1=new JTextField("введите текст",20);
-//        jPanel.add(jTextField1);
-//        jPanel.revalidate();
         JButton jButton = new JButton("срочно шифровать");
         jPanel.add(jButton);
         jButton.addActionListener(new ActionListener( ) {
