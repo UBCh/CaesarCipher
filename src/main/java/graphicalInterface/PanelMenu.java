@@ -4,9 +4,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.IOException;
 
-public class Window {
+public class PanelMenu {
     static JFrame jFrame = getJFrame( );
     static JPanel jPanel = new JPanel( );
 
@@ -17,9 +16,9 @@ public class Window {
         jButton1.addActionListener(new ActionListener( ) {
             @Override
             public void actionPerformed(ActionEvent e) {
-                try {
+                try { jFrame.setVisible(false);
                     PanelOne.getPanelOne( );
-                } catch (IOException ex) {
+                } catch (Exception ex) {
                     ex.printStackTrace( );
                 }
             }
@@ -30,6 +29,7 @@ public class Window {
         jButton2.addActionListener(new ActionListener( ) {
             @Override
             public void actionPerformed(ActionEvent e) {
+                jFrame.setVisible(false);
                 PanelTwo.getPanelTwo( );
             }
         });
@@ -39,6 +39,7 @@ public class Window {
         jButton3.addActionListener(new ActionListener( ) {
             @Override
             public void actionPerformed(ActionEvent e) {
+                jFrame.setVisible(false);
                 PanelFour.getPanelFour( );
             }
         });
@@ -48,6 +49,7 @@ public class Window {
         jButton4.addActionListener(new ActionListener( ) {
             @Override
             public void actionPerformed(ActionEvent e) {
+                jFrame.setVisible(false);
                 PanelThree.getPanelThree( );
             }
         });
@@ -57,6 +59,7 @@ public class Window {
         jButton5.addActionListener(new ActionListener( ) {
             @Override
             public void actionPerformed(ActionEvent e) {
+                jFrame.setVisible(false);
                 System.exit(0);
             }
         });

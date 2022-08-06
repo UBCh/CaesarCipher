@@ -13,8 +13,8 @@ import java.awt.event.ActionListener;
 import java.io.IOException;
 
 public class PanelOne {
-      static JFrame jFrame=getJFrame();
-      static JPanel jPanel=new JPanel();
+    static JFrame jFrame = getJFrame( );
+    static JPanel jPanel = new JPanel( );
 
     public static void getPanelOne() throws IOException {
         jFrame.add(jPanel);
@@ -50,29 +50,32 @@ public class PanelOne {
                     exx.printStackTrace( );
                 }
                 jFrame.add(new MyComponents(itog));
+
                 try {
-                                 StrimDao.outputFiles(itog);
+                    StrimDao.outputFiles(itog);
                 } catch (IOException ex) {
                     ex.printStackTrace( );
                 }
 
             }
+
+
         });
 
 
     }
 
-   static JFrame getJFrame(){
+    static JFrame getJFrame() {
 
-       JFrame jFrame = new JFrame( ) {
-       };
-       jFrame.setVisible(true);
-       jFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-       jFrame.setTitle(" ПОМЕСТИТЕ ТЕКСТ В text.txt и ЗАДАЙТЕ КЛЮЧ ");
-       Toolkit toolkit = Toolkit.getDefaultToolkit( );  // инструменты для окна
-       Dimension dimension = toolkit.getScreenSize( ); // получаем размер экрана
-       jFrame.setBounds(dimension.width / 2 - 500, dimension.height / 2 - 400, 500, 300);
-       return jFrame;
-   }
+        JFrame jFrame = new JFrame( ) {
+        };
+        jFrame.setVisible(true);
+        jFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        jFrame.setTitle(" ПОМЕСТИТЕ ТЕКСТ В text.txt и ЗАДАЙТЕ КЛЮЧ ");
+        Toolkit toolkit = Toolkit.getDefaultToolkit( );  // инструменты для окна
+        Dimension dimension = toolkit.getScreenSize( ); // получаем размер экрана
+        jFrame.setBounds(dimension.width / 2 - 500, dimension.height / 2 - 400, 500, 300);
+        return jFrame;
+    }
 
 }

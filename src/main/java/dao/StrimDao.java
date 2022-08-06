@@ -5,13 +5,12 @@ import exception.TextNotFoundException;
 import java.io.*;
 import java.nio.ByteBuffer;
 import java.nio.channels.FileChannel;
-
-import static java.nio.charset.StandardCharsets.UTF_8;
+import java.nio.charset.StandardCharsets;
 
 public class StrimDao {
 
     static RandomAccessFile randomAccessFile;
-
+    static StringBuilder builder = new StringBuilder( );
     static {
         try {
             randomAccessFile = new RandomAccessFile("out/text.txt", "rw");
@@ -25,10 +24,11 @@ public class StrimDao {
     public static String inputFiles() throws IOException, TextNotFoundException {
 // создаем буфер необходимого размера на основании размера нашего канала
         ByteBuffer byteBuffer = ByteBuffer.allocate((int) channel.size( ));
-        channel.read(byteBuffer);
+           channel.read(byteBuffer);
         // переключаем буфер с режима записи на режим чтения
         byteBuffer.flip( );
-        String result = new String(byteBuffer.array( ), UTF_8);
+
+           String result = new String(byteBuffer.array(),StandardCharsets.UTF_8);
         if (result.length( ) < 1) throw new TextNotFoundException("файл пустой, поместите текст в файл");
         return result;
 

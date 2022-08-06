@@ -18,8 +18,7 @@ public class MyComponents extends JComponent {
         graphics2D.drawString(text, 10, 50);
         Line2D line2D = new Line2D.Double(0, 55, 1090, 55);
         graphics2D.draw(line2D);
-        JPanel jPanel = new JPanel( );
-        jPanel.add(new JButton("нажми на кнопку"));
+
 
 
     }

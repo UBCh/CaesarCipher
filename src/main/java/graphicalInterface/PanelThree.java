@@ -43,10 +43,10 @@ public class PanelThree {
                     ex.printStackTrace( );
                 }
                 String tmp2 = BruteForse.getCodeWord( );
-                jFrame.add(new MyComponents("запомните кодовое слово : " + tmp2 + " ;  Зашифрованный текст :  " + tmp1));
-                String itog = "запомните кодовое слово : " + tmp2 + " ;  Зашифрованный текст :  " + tmp1;
+                jFrame.add(new MyComponents("запомните кодовое слово : " + tmp2));
+
                 try {
-                    StrimDao.outputFiles(itog);
+                    StrimDao.outputFiles(tmp1);
                 } catch (IOException ex) {
                     ex.printStackTrace( );
                 }
