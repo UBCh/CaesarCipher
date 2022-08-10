@@ -45,8 +45,11 @@ public class Encoder {
             return 2;
         }
        if (!index && !indexTwo)
-        throw new SymbolNotFoundException(" символ не найден в алфавите, попробуйте другой текст");
-        return 0;
+           return 0;
+//       throw new SymbolNotFoundException(" символ не найден в алфавите, попробуйте другой текст");
+
+
+        return -1;
     }
 
 
@@ -68,8 +71,8 @@ public class Encoder {
                         return i;
                     }
                 }
-        }
-        return 0;
+                   }
+       return -1;
     }
 
     // сдвигаем символ по алфавиту вправо
@@ -90,9 +93,11 @@ public class Encoder {
                 }
                var q= alfabetMapTwo.get(indexMapMini);
                 return q;
-
+            case -1:
+                return simbol;
         }
-        return simbol;
+
+        return 0;
     }
 
 
@@ -112,9 +117,10 @@ public class Encoder {
 
                 }
                 return alfabetMapTwo.get(indexMap2);
-
+            case -1:
+                return simbol;
 
         }
-        return simbol;
+        return 0;
     }
 }
