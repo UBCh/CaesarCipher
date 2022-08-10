@@ -7,16 +7,22 @@ import java.util.Map;
 
 
 public class Encoder {
-// алфавит вынесен в переменную- для возможности параметризации проекта, с той же целью 2 алфавита
+// алфавит вынесен в переменную- для возможности параметризации проекта, с той же целью 2 алфавита, что позволяет при желании добавлять любой алфавит ,
+//    переменные можно передавать из контроллера или добавить еще одну панель управления
 
-    private static final char[] a = {'А', 'Б', 'В', 'Г', 'Д', 'Е', 'Ё', 'Ж', 'З', 'И', 'Й', 'К', 'Л', 'М', 'Н', 'О', 'П', 'Р', 'С', 'Т', 'У', 'Ф', 'Х', 'Ц', 'Ч', 'Ш', 'Щ', 'Ь', 'Ы', 'Ъ', 'Э', 'Ю', 'Я', '.', ',', '"', ':', '-', '!', '?', ' '};
-    private static final char[] aM = {'а', 'б', 'в', 'г', 'д', 'е', 'ё', 'ж', 'з', 'и', 'й', 'к', 'л', 'м', 'н', 'о', 'п', 'р', 'с', 'т', 'у', 'ф', 'х', 'ц', 'ч', 'ш', 'щ', 'ь', 'ы', 'ъ', 'э', 'ю', 'я', '.', ',', '"', ':', '-', '!', '?', ' '};
-    private static final Map<Integer, Character> alfabet = setMapsAlfabet(a);
-    private static final Map<Integer, Character> alfabetMini = setMapsAlfabetMini(aM);
+    private static  char[] alfabet = {'А', 'Б', 'В', 'Г', 'Д', 'Е', 'Ё', 'Ж', 'З', 'И', 'Й', 'К', 'Л', 'М', 'Н', 'О', 'П', 'Р', 'С', 'Т', 'У', 'Ф', 'Х', 'Ц', 'Ч', 'Ш', 'Щ', 'Ь', 'Ы', 'Ъ', 'Э', 'Ю', 'Я', '.', ',', '"', ':', '-', '!', '?', ' '};
+     private static  char[] alfabetTwo = {'а', 'б', 'в', 'г', 'д', 'е', 'ё', 'ж', 'з', 'и', 'й', 'к', 'л', 'м', 'н', 'о', 'п', 'р', 'с', 'т', 'у', 'ф', 'х', 'ц', 'ч', 'ш', 'щ', 'ь', 'ы', 'ъ', 'э', 'ю', 'я', '.', ',', '"', ':', '-', '!', '?', ' '};
+    private static final Map<Integer, Character> alfabetMap = setMapsAlfabet(alfabet);
+    private static final Map<Integer, Character> alfabetMapTwo = setMapsAlfabet(alfabetTwo);
 
-    public Encoder() {
-    }
 
+//   конструктор с параметрами, для передачи переменных
+//    public Encoder(char[] x,char[] y) {
+//        this.alfabet=x;
+//        this.alfabetTwo =y;
+//    }
+    public Encoder(){}
+    // определяем какой из алфавитов используется
     private static Map<Integer, Character> setMapsAlfabet(char[] chars) {
 //        BidiMap map = new DualHashBidiMap<>();
         Map<Integer, Character> map = new HashMap<>( );
@@ -26,25 +32,19 @@ public class Encoder {
         return map;
     }
 
-    private static Map<Integer, Character> setMapsAlfabetMini(char[] chars) {
-        Map<Integer, Character> map = new HashMap<>( );
-        for (int c = 0; c < chars.length; c++) {
-            map.put(c, chars[c]);
-        }
-        return map;
-    }
+
 
     // определяем какой из алфавитов используется
     public static int findSymbol(char cha) throws SymbolNotFoundException {
-        boolean index = alfabet.containsValue(cha);
+        boolean index = alfabetMap.containsValue(cha);
 
-        boolean indexMini = alfabetMini.containsValue(cha);
+        boolean indexTwo = alfabetMapTwo.containsValue(cha);
         if (index) {
             return 1;
-        } else if (indexMini) {
+        } else if (indexTwo) {
             return 2;
         }
-       if (!index && !indexMini)
+       if (!index && !indexTwo)
         throw new SymbolNotFoundException(" символ не найден в алфавите, попробуйте другой текст");
         return 0;
     }
@@ -55,15 +55,15 @@ public class Encoder {
     public static int getIndex(char ch) throws SymbolNotFoundException {
         switch (findSymbol(ch)) {
             case 1:
-                for (int i = 0; i < alfabet.size( ); i++) {
-                    if (alfabet.get(i).equals(ch)) {
+                for (int i = 0; i < alfabetMap.size( ); i++) {
+                    if (alfabetMap.get(i).equals(ch)) {
                         return i;
                     }
                 }
 
             case 2:
-                for (int i = 0; i < alfabetMini.size( ); i++) {
-                    if (alfabetMini.get(i).equals(ch)) {
+                for (int i = 0; i < alfabetMapTwo.size( ); i++) {
+                    if (alfabetMapTwo.get(i).equals(ch)) {
 
                         return i;
                     }
@@ -72,23 +72,23 @@ public class Encoder {
         return 0;
     }
 
-
+    // сдвигаем символ по алфавиту вправо
     public static char encodingCesar(char simbol) throws SymbolNotFoundException {
-        switch (findSymbol(simbol)) {
+        switch (findSymbol(simbol)) {            // определяем какой из алфавитов используется
             case 1:
-                int indexMap = getIndex(simbol) + Key.getKey( );
-                if (indexMap >= alfabet.size( )-1) {
-                    indexMap = indexMap - alfabet.size( );
+                int indexMap = getIndex(simbol) + Key.getKey( );      // определяем новый индекс символа в мапе
+               while (indexMap >= alfabetMap.size( )-1) {                  // если новый индекс больше, чем размер мапы
+                    indexMap = indexMap - (alfabetMap.size( )-1);
                 }
-                return alfabet.get(indexMap);
+                return alfabetMap.get(indexMap);
 
             case 2:
                 int indexMapMini = getIndex(simbol)+ Key.getKey( );
-                   if (indexMapMini >= alfabetMini.size( )-1) {
-                    indexMapMini = indexMapMini - alfabetMini.size( );
+                  while (indexMapMini >= alfabetMapTwo.size( )-1) {
+                   indexMapMini = indexMapMini - (alfabetMapTwo.size( )-1);
                     indexMapMini=indexMapMini;
                 }
-               var q=alfabetMini.get(indexMapMini);
+               var q= alfabetMapTwo.get(indexMapMini);
                 return q;
 
         }
@@ -100,18 +100,18 @@ public class Encoder {
         switch (findSymbol(simbol)) {
             case 1:
                 int indexMap1 = getIndex(simbol) - Key.getKey( );
-                if (indexMap1 < 0) {
-                    indexMap1 = alfabet.size( ) + indexMap1;
+                while (indexMap1 < 0) {
+                    indexMap1 = (alfabetMap.size( )-1) + indexMap1;
                 }
-                return alfabet.get(indexMap1);
+                return alfabetMap.get(indexMap1);
 
             case 2:
                 int indexMap2 = getIndex(simbol) - Key.getKey( );
-                if (indexMap2 < 0) {
-                    indexMap2 = alfabetMini.size( ) + indexMap2;
+                while (indexMap2 < 0) {
+                    indexMap2 = (alfabetMapTwo.size( )-1) + indexMap2;
 
                 }
-                return alfabetMini.get(indexMap2);
+                return alfabetMapTwo.get(indexMap2);
 
 
         }

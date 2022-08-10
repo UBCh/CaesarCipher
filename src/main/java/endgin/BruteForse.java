@@ -52,13 +52,13 @@ public class BruteForse {
     }
 
     public static String cryptographer(String string) throws SymbolNotFoundException {
-        String text = string;
+
         // создадим  для хранения зашифрованного
         String result = "";
         // сначала порежем на части по пробелом, т.е. разобьем на слова
         String[] segmentText = string.split(String.valueOf(' '));
         // найдем кодове слово -по длине самое длинное
-        int index = 0;    // ишем индект самого длинного отрезка
+        int index = 0;    // ишем индекс самого длинного отрезка
         int w = 0;
         for (int q = 0; q < segmentText.length; q++) {
             if (segmentText[q].length( ) > w) {
@@ -67,11 +67,11 @@ public class BruteForse {
             }
             continue;
         }
-        setCodeWord(segmentText[index]);
+        setCodeWord(segmentText[index]);  // задаем кодовое слово
 
-        Key.setKey((int) (Math.random( ) * 9));
+        Key.setKey((int) (Math.random( ) * 9));  // задаем случайный ключ
 
-        return Analisator.analisatorText(string);
+        return Analisator.analisatorText(string);   // кодируем
     }
 
 

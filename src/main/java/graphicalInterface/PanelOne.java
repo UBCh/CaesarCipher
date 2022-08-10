@@ -39,7 +39,8 @@ public class PanelOne {
                 jFrame.setBounds(dimension.width / 2 - 500, dimension.height / 2 - 400, 1000, 800);
                 String itog = null;
                 try {
-                    itog = Analisator.analisatorText(StrimDao.inputFiles( ));
+                    itog=StrimDao.inputFiles( );
+                    itog = Analisator.analisatorText(itog);
 
                 } catch (IOException ex) {
                     ex.printStackTrace( );
@@ -49,6 +50,7 @@ public class PanelOne {
                 catch (TextNotFoundException exx){
                     exx.printStackTrace( );
                 }
+               itog=itog.toString();
                 jFrame.add(new MyComponents(itog));
 
                 try {
