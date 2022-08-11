@@ -11,12 +11,19 @@ public class Encoder {
 //    переменные можно передавать из контроллера или добавить еще одну панель управления
 
     private static  char[] alfabet = {'А', 'Б', 'В', 'Г', 'Д', 'Е', 'Ё', 'Ж', 'З', 'И', 'Й', 'К', 'Л', 'М', 'Н', 'О', 'П', 'Р', 'С', 'Т', 'У', 'Ф', 'Х', 'Ц', 'Ч', 'Ш', 'Щ', 'Ь', 'Ы', 'Ъ', 'Э', 'Ю', 'Я', '.', ',', '"', ':', '-', '!', '?', ' '};
-     private static  char[] alfabetTwo = {'а', 'б', 'в', 'г', 'д', 'е', 'ё', 'ж', 'з', 'и', 'й', 'к', 'л', 'м', 'н', 'о', 'п', 'р', 'с', 'т', 'у', 'ф', 'х', 'ц', 'ч', 'ш', 'щ', 'ь', 'ы', 'ъ', 'э', 'ю', 'я', '.', ',', '"', ':', '-', '!', '?', ' '};
+     private static  char[] alfabetTwo = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z',' '};
     private static final Map<Integer, Character> alfabetMap = setMapsAlfabet(alfabet);
     private static final Map<Integer, Character> alfabetMapTwo = setMapsAlfabet(alfabetTwo);
 
+    public static char[] getAlfabet() {
+        return alfabet;
+    }
 
-//   конструктор с параметрами, для передачи переменных
+    public static char[] getAlfabetTwo() {
+        return alfabetTwo;
+    }
+
+    //   конструктор с параметрами, для передачи переменных
 //    public Encoder(char[] x,char[] y) {
 //        this.alfabet=x;
 //        this.alfabetTwo =y;
@@ -35,8 +42,8 @@ public class Encoder {
 
 
     // определяем какой из алфавитов используется
-    public static int findSymbol(char cha) throws SymbolNotFoundException {
-        boolean index = alfabetMap.containsValue(cha);
+    public static int findSymbol(char cha)  {
+       boolean index = alfabetMap.containsValue(cha);
 
         boolean indexTwo = alfabetMapTwo.containsValue(cha);
         if (index) {
@@ -46,7 +53,6 @@ public class Encoder {
         }
        if (!index && !indexTwo)
            return 0;
-//       throw new SymbolNotFoundException(" символ не найден в алфавите, попробуйте другой текст");
 
 
         return -1;
@@ -111,6 +117,9 @@ public class Encoder {
                 return alfabetMap.get(indexMap1);
 
             case 2:
+                int u=alfabetMapTwo.size();
+                int y=getIndex(simbol);
+                int o=Key.getKey( );
                 int indexMap2 = getIndex(simbol) - Key.getKey( );
                 while (indexMap2 < 0) {
                     indexMap2 = (alfabetMapTwo.size( )-1) + indexMap2;

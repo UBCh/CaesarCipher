@@ -6,6 +6,7 @@ import java.io.*;
 import java.nio.ByteBuffer;
 import java.nio.channels.FileChannel;
 import java.nio.charset.StandardCharsets;
+import java.util.Locale;
 
 public class StrimDao {
 
@@ -23,7 +24,7 @@ public class StrimDao {
 
         String result = new String(byteBuffer.array( ), StandardCharsets.UTF_8);
         if (result.length( ) < 1) throw new TextNotFoundException("файл пустой, поместите текст в файл");
-        return result;
+        return result.toUpperCase(Locale.ROOT);
 
     }
 
